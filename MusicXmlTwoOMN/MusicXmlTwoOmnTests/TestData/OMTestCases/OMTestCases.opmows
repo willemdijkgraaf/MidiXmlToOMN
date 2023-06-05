@@ -1,0 +1,12 @@
+("workspace-view/current"
+ "score.opmo"
+)
+
+("workspace-view/history"
+ (("score.opmo" "score.opmo"))
+)
+
+("workspace-view/layout-ratios"
+ (1 (OM-CAPI::MAIN 236 NIL 914) (OM-CAPI::EDITOR-AND-LISTENER-LAYOUT 561 NIL 281))
+)
+
