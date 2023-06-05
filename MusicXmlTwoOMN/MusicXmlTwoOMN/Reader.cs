@@ -36,14 +36,16 @@ namespace MusicXmlTwoOMN
             }
         }
 
-        public void Next()
+        public bool Next()
         {
+            var hasMore = false;
             foreach (var system in VerticalContent.Systems)
             {
-                system.Next();
+                hasMore = system.Next();
             }
 
             ScoreEventsCounter++;
+            return hasMore;
         }
     }
 }

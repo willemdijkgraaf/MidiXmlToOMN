@@ -52,8 +52,13 @@ namespace MusicXmlTwoOMN
             switch (CycleStatus)
             {
                 case MeasureInterpretationCycle.StartBarLine:
+                case MeasureInterpretationCycle.TimeSignature:
                 case MeasureInterpretationCycle.Length:
-                    return;
+                case MeasureInterpretationCycle.Pitch:
+                case MeasureInterpretationCycle.Velocity:
+                case MeasureInterpretationCycle.Attribute:
+                case MeasureInterpretationCycle.EndBarLine:
+                return;
             }
 
             if (CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].MeasureElements.Count - 1)

@@ -30,25 +30,32 @@ namespace MusicXmlTwoOmnTests
             // act
             reader.Read();
 
-            // assert
-            reader.ScoreEventsCounter.Should().Be(0);
             var verticalContent = reader.VerticalContent;
+            var cycle = new List<MeasureInterpretationCycle>();
+            while (reader.Next())
+            {
+                cycle.Add(verticalContent.Systems[0].CycleStatus);
+            }
+            // assert
+            
             verticalContent.Systems.Count().Should().Be(1);
 
             var system = verticalContent.Systems[0];
             system.Id.Should().Be("P1");
             system.Name.Should().Be("Flute");
-            system.CycleStatus.Should().Be(MeasureInterpretationCycle.NotInitialized);
+            cycle.Should().BeEquivalentTo(new List<MeasureInterpretationCycle> 
+            {
+                MeasureInterpretationCycle.StartBarLine,
+                MeasureInterpretationCycle.TimeSignature,
+                MeasureInterpretationCycle.Length,
+                MeasureInterpretationCycle.Pitch,
+                MeasureInterpretationCycle.Velocity,
+                MeasureInterpretationCycle.Attribute,
+                MeasureInterpretationCycle.EndBarLine,
+                MeasureInterpretationCycle.End,
 
-            reader.Next();
-            reader.ScoreEventsCounter.Should().Be(1);
-            system.CycleStatus.Should().Be(MeasureInterpretationCycle.StartBarLine);
-
-
-            reader.Next();
-            verticalContent = reader.VerticalContent;
-            reader.ScoreEventsCounter.Should().Be(2);
-
+            });
+            
         }
     }
 }
