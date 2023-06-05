@@ -36,7 +36,7 @@ namespace MusicXmlTwoOMN
             }
         }
 
-        public void MoveNext()
+        public void Next()
         {
             foreach (var system in VerticalContent.Systems)
             {
@@ -45,25 +45,5 @@ namespace MusicXmlTwoOMN
 
             ScoreEventsCounter++;
         }
-
-
-    }
-
-    public enum BarContentInterpretationCycle 
-    { 
-        NotInitialized = 0,
-        StartBarLine = 1,
-        TimeSignature = 2,
-        TimeLength = 3,
-        ExistencePitch = 4,
-        DynamicVelocity = 5,
-        ExpressionAttribute = 6,
-        EndBarLine = 7,
-        End = 8
-    }
-
-    public class VerticalContent
-    {
-        public List<HorizontalContent> Systems = new List<HorizontalContent>();
     }
 }

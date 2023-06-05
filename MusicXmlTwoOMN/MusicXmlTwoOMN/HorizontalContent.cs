@@ -13,7 +13,7 @@ namespace MusicXmlTwoOMN
         {
             Id = id;
             Name = name;
-            CycleStatus = BarContentInterpretationCycle.NotInitialized;
+            CycleStatus = MeasureInterpretationCycle.NotInitialized;
             _measures = measures;
             CurrentMeasureIndex = 0;
             CurrentMeasureElementIndex = 0;
@@ -21,18 +21,18 @@ namespace MusicXmlTwoOMN
 
         public string Id { get; internal set; }
         public string Name { get; internal set; }
-        public BarContentInterpretationCycle CycleStatus { get; private set; }
+        public MeasureInterpretationCycle CycleStatus { get; private set; }
         public Measure CurrentMeasure => _measures[CurrentMeasureIndex];
         public int CurrentMeasureIndex { get; private set; }
         public int CurrentMeasureElementIndex { get; private set; }
         public MeasureElement MeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
         public bool Next()
         {
-            if (CycleStatus == BarContentInterpretationCycle.End) return false;
+            if (CycleStatus == MeasureInterpretationCycle.End) return false;
             
-            if (CycleStatus == BarContentInterpretationCycle.EndBarLine)
+            if (CycleStatus == MeasureInterpretationCycle.EndBarLine)
             {
-                CycleStatus = BarContentInterpretationCycle.NotInitialized;
+                CycleStatus = MeasureInterpretationCycle.NotInitialized;
             } else
             {
                 CycleStatus++;
@@ -41,7 +41,7 @@ namespace MusicXmlTwoOMN
             SetIndexes();
             
             if (CurrentMeasureIndex > _measures.Count - 1) {
-                CycleStatus = BarContentInterpretationCycle.End;
+                CycleStatus = MeasureInterpretationCycle.End;
             }
 
             return true;
@@ -51,8 +51,8 @@ namespace MusicXmlTwoOMN
         {
             switch (CycleStatus)
             {
-                case BarContentInterpretationCycle.StartBarLine:
-                case BarContentInterpretationCycle.TimeLength:
+                case MeasureInterpretationCycle.StartBarLine:
+                case MeasureInterpretationCycle.Length:
                     return;
             }
 

@@ -38,14 +38,14 @@ namespace MusicXmlTwoOmnTests
             var system = verticalContent.Systems[0];
             system.Id.Should().Be("P1");
             system.Name.Should().Be("Flute");
-            system.CycleStatus.Should().Be(BarContentInterpretationCycle.NotInitialized);
+            system.CycleStatus.Should().Be(MeasureInterpretationCycle.NotInitialized);
 
-            reader.MoveNext();
+            reader.Next();
             reader.ScoreEventsCounter.Should().Be(1);
-            system.CycleStatus.Should().Be(BarContentInterpretationCycle.StartBarLine);
+            system.CycleStatus.Should().Be(MeasureInterpretationCycle.StartBarLine);
 
 
-            reader.MoveNext();
+            reader.Next();
             verticalContent = reader.VerticalContent;
             reader.ScoreEventsCounter.Should().Be(2);
 
