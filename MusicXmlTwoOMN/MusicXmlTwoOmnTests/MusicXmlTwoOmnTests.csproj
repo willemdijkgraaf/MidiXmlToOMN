@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MusicXmlTwoOMN\MusicXmlTwoOMN.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="TestData\MusicXmlWithChords.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
