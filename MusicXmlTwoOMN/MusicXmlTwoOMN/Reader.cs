@@ -5,7 +5,6 @@ namespace MusicXmlTwoOMN
 {
     public class Reader
     {
-
         private readonly string _path;
         public Score Score {  get; private set; }
         public int ScoreEventsCounter { get; private set; }
