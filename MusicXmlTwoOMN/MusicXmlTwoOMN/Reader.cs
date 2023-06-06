@@ -32,14 +32,14 @@ namespace MusicXmlTwoOMN
                     part.Name,
                     part.Measures);
                
-                VerticalContent.Systems.Add(horizontalContent);
+                VerticalContent.Staves.Add(horizontalContent);
             }
         }
 
         public bool Next()
         {
             var hasMore = false;
-            foreach (var system in VerticalContent.Systems)
+            foreach (var system in VerticalContent.Staves)
             {
                 hasMore = system.Next();
             }

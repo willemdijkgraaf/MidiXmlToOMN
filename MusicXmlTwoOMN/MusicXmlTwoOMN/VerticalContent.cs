@@ -2,6 +2,6 @@
 {
     public class VerticalContent
     {
-        public List<HorizontalContent> Systems = new List<HorizontalContent>();
+        public List<HorizontalContent> Staves = new List<HorizontalContent>();
     }
 }

@@ -30,11 +30,11 @@ namespace MusicXmlTwoOmnTests
             // act
             reader.Read();
 
-            var verticalContent = reader.VerticalContent;
+            var stave = reader.VerticalContent.Staves[0];
             var cycle = new List<MeasureInterpretationCycle>();
             while (reader.Next())
             {
-                cycle.Add(verticalContent.Systems[0].CycleStatus);
+                cycle.Add(stave.CycleStatus);
             }
 
             // assert
