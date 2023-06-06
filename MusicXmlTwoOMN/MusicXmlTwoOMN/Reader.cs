@@ -1,12 +1,13 @@
-﻿using MusicXml;
-using MusicXml.Domain;
+﻿using musicxml;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace MusicXmlTwoOMN
 {
     public class Reader
     {
         private readonly string _path;
-        public Score Score {  get; private set; }
+        public Scorepartwise Score {  get; private set; }
         public int ScoreEventsCounter { get; private set; }
         public VerticalContent VerticalContent { get; private set; }
 
@@ -17,22 +18,37 @@ namespace MusicXmlTwoOMN
 
         public void Read()
         {
-            Score = MusicXmlParser.GetScore(_path);
+            Score = DeserializeFromFile<Scorepartwise>(_path);
             ScoreEventsCounter = 0;
             InitializeContent();
+        }
+
+        private T DeserializeFromFile<T>(string xmlFilePath) where T : class
+        {
+            using (var reader = XmlReader.Create(xmlFilePath, new XmlReaderSettings() { DtdProcessing = DtdProcessing.Parse }))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "score-partwise",
+                    IsNullable = false
+                };
+                var serializer = new XmlSerializer(typeof(T), xRoot);
+
+                return (T)serializer.Deserialize(reader);
+            }
         }
 
         private void InitializeContent()
         {
             VerticalContent = new VerticalContent();
-            foreach (var part in Score.Parts)
+            foreach (var part in Score.Partlist.Items)
             {
-                var horizontalContent = new HorizontalContent(
-                    part.Id,
-                    part.Name,
-                    part.Measures);
+                //var horizontalContent = new HorizontalContent(
+                //    part.Id,
+                //    part.Id,// todo
+                //    part.Measure);
                
-                VerticalContent.Staves.Add(horizontalContent);
+                //VerticalContent.Staves.Add(horizontalContent);
             }
         }
 

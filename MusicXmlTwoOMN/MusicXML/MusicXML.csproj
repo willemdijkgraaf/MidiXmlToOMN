@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MusicXML\MusicXML.csproj" />
+    <PackageReference Include="XmlSchemaClassGenerator.Console" Version="2.0.810" />
   </ItemGroup>
 
 </Project>

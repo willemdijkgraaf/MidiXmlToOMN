@@ -17,7 +17,7 @@ namespace MusicXmlTwoOmnTests
             reader.Read();
 
             // assert
-            reader.Score.MovementTitle.Should().Be("Im wunderschönen Monat Mai");
+            reader.Score.Movementtitle.Should().Be("Im wunderschönen Monat Mai");
         }
 
         [TestMethod]

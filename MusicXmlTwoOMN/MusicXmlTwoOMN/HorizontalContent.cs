@@ -1,20 +1,20 @@
-﻿using MusicXml.Domain;
+﻿using musicxml;
 
 namespace MusicXmlTwoOMN
 {
     public class HorizontalContent
     {
-        private List<Measure> _measures { get; set; }
+        private ScorepartwisePartMeasure[] _measures { get; set; }
 
         public HorizontalContent(
             string id, 
             string name,
-            List<Measure> measures)
+            IEnumerable<ScorepartwisePartMeasure> measures)
         {
             Id = id;
             Name = name;
             CycleStatus = MeasureInterpretationCycle.NotInitialized;
-            _measures = measures;
+            _measures = measures.ToArray();
             CurrentMeasureIndex = 0;
             CurrentMeasureElementIndex = 0;
         }
@@ -22,11 +22,11 @@ namespace MusicXmlTwoOMN
         public string Id { get; internal set; }
         public string Name { get; internal set; }
         public MeasureInterpretationCycle CycleStatus { get; private set; }
-        public Measure CurrentMeasure => _measures[CurrentMeasureIndex];
+        public ScorepartwisePartMeasure CurrentMeasure => _measures[CurrentMeasureIndex];
         public int CurrentMeasureIndex { get; private set; }
         public int CurrentMeasureElementIndex { get; private set; }
         public bool HasMore { get; private set; }
-        public MeasureElement MeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
+        public object CurrentNote => _measures[CurrentMeasureIndex].Items[CurrentMeasureElementIndex];
         public void Next()
         {
             if (CycleStatus == MeasureInterpretationCycle.End) return;
@@ -57,7 +57,7 @@ namespace MusicXmlTwoOMN
                     return;
             }
 
-            if (CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].MeasureElements.Count - 1)
+            if (CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].Items.Count - 1)
             {
                 // Next measure element
                 CurrentMeasureElementIndex++;
@@ -69,7 +69,7 @@ namespace MusicXmlTwoOMN
                 CurrentMeasureElementIndex = 0;
             }
 
-            if (CurrentMeasureIndex > _measures.Count - 1)
+            if (CurrentMeasureIndex > _measures.Length - 1)
             {
                 CycleStatus = MeasureInterpretationCycle.End;
                 HasMore = false;

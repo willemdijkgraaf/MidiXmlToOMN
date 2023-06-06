@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.33711.374
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlTwoOMN", "MusicXmlTwoOMN\MusicXmlTwoOMN.csproj", "{B5A17E78-B2D4-4A3E-81CC-B3205204177C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicXmlTwoOMN", "MusicXmlTwoOMN\MusicXmlTwoOMN.csproj", "{B5A17E78-B2D4-4A3E-81CC-B3205204177C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlTwoOmnTests", "MusicXmlTwoOmnTests\MusicXmlTwoOmnTests.csproj", "{F74D647C-2357-4715-A748-65562F8E587C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicXmlTwoOmnTests", "MusicXmlTwoOmnTests\MusicXmlTwoOmnTests.csproj", "{F74D647C-2357-4715-A748-65562F8E587C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXML", "MusicXML\MusicXML.csproj", "{E6E48AB1-11CE-42AE-90F5-6CA45CF3650B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F74D647C-2357-4715-A748-65562F8E587C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74D647C-2357-4715-A748-65562F8E587C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74D647C-2357-4715-A748-65562F8E587C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6E48AB1-11CE-42AE-90F5-6CA45CF3650B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E48AB1-11CE-42AE-90F5-6CA45CF3650B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E48AB1-11CE-42AE-90F5-6CA45CF3650B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E48AB1-11CE-42AE-90F5-6CA45CF3650B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
