@@ -38,10 +38,11 @@ namespace MusicXmlTwoOMN
 
         public bool Next()
         {
-            var hasMore = false;
+            var hasMore = true;
             foreach (var system in VerticalContent.Staves)
             {
-                hasMore = system.Next();
+                system.Next();
+                if (!system.HasMore) hasMore = false;
             }
 
             ScoreEventsCounter++;

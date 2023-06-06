@@ -46,9 +46,7 @@ namespace MusicXmlTwoOmnTests
                 MeasureInterpretationCycle.Pitch,
                 MeasureInterpretationCycle.Velocity,
                 MeasureInterpretationCycle.Attribute,
-                MeasureInterpretationCycle.EndBarLine,
-                MeasureInterpretationCycle.End,
-
+                MeasureInterpretationCycle.EndBarLine
             });
             
         }

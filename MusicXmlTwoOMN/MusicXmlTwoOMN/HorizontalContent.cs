@@ -25,10 +25,11 @@ namespace MusicXmlTwoOMN
         public Measure CurrentMeasure => _measures[CurrentMeasureIndex];
         public int CurrentMeasureIndex { get; private set; }
         public int CurrentMeasureElementIndex { get; private set; }
+        public bool HasMore { get; private set; }
         public MeasureElement MeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
-        public bool Next()
+        public void Next()
         {
-            if (CycleStatus == MeasureInterpretationCycle.End) return false;
+            if (CycleStatus == MeasureInterpretationCycle.End) return;
             
             if (CycleStatus == MeasureInterpretationCycle.EndBarLine)
             {
@@ -39,12 +40,6 @@ namespace MusicXmlTwoOMN
             }
 
             SetIndexes();
-            
-            if (CurrentMeasureIndex > _measures.Count - 1) {
-                CycleStatus = MeasureInterpretationCycle.End;
-            }
-
-            return true;
         }
 
         private void SetIndexes()
@@ -58,7 +53,8 @@ namespace MusicXmlTwoOMN
                 case MeasureInterpretationCycle.Velocity:
                 case MeasureInterpretationCycle.Attribute:
                 case MeasureInterpretationCycle.EndBarLine:
-                return;
+                    HasMore = true;
+                    return;
             }
 
             if (CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].MeasureElements.Count - 1)
@@ -71,6 +67,12 @@ namespace MusicXmlTwoOMN
                 // next measure
                 CurrentMeasureIndex++;
                 CurrentMeasureElementIndex = 0;
+            }
+
+            if (CurrentMeasureIndex > _measures.Count - 1)
+            {
+                CycleStatus = MeasureInterpretationCycle.End;
+                HasMore = false;
             }
         }
     }
