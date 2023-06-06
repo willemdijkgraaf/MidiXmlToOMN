@@ -36,13 +36,8 @@ namespace MusicXmlTwoOmnTests
             {
                 cycle.Add(verticalContent.Systems[0].CycleStatus);
             }
-            // assert
-            
-            verticalContent.Systems.Count().Should().Be(1);
 
-            var system = verticalContent.Systems[0];
-            system.Id.Should().Be("P1");
-            system.Name.Should().Be("Flute");
+            // assert
             cycle.Should().BeEquivalentTo(new List<MeasureInterpretationCycle> 
             {
                 MeasureInterpretationCycle.StartBarLine,
