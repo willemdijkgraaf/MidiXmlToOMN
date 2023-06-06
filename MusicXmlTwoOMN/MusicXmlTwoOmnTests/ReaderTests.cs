@@ -21,10 +21,10 @@ namespace MusicXmlTwoOmnTests
         }
 
         [TestMethod]
-        public void ShallRead_OneNoteAndOneTimeSignature()
+        public void ShallRead_OneBarOneNoteAndOneTimeSignature()
         {
             // arrange
-            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneNoteAndOneTimeSignature.musicxml";
+            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneBarOneNoteAndOneTimeSignature.musicxml";
             var reader = new Reader(path);
 
             // act
@@ -52,10 +52,10 @@ namespace MusicXmlTwoOmnTests
         }
 
         [TestMethod]
-        public void ShallRead_TwoNotesAndOneTimeSignature()
+        public void ShallRead_TwoBarsTwoNotesAndOneTimeSignature()
         {
             // arrange
-            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\TwoNotesAndOneTimeSignature.musicxml";
+            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\TwoBarsTwoNotesAndOneTimeSignature.musicxml";
             var reader = new Reader(path);
 
             // act
