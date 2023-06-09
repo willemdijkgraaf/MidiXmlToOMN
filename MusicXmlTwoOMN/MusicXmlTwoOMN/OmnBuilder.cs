@@ -71,6 +71,15 @@ namespace MusicXmlTwoOMN
         private void StaffCurrentPositionToOmn(Dictionary<HorizontalContent, StringBuilder> stavesBuilder, HorizontalContent staff)
         {
             var staffBuilder = stavesBuilder[staff];
+            switch (staff.CycleStatus)
+            {
+                // not implemented yet
+                case MeasureInterpretationCycle.TimeSignature:
+                case MeasureInterpretationCycle.Velocity:
+                case MeasureInterpretationCycle.Attribute:
+                case MeasureInterpretationCycle.NotInitialized:
+                    return;
+            }
             var omn = _toOmn[staff.CycleStatus].Invoke(staff);
             staffBuilder.Append(omn);
         }
