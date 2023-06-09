@@ -65,7 +65,7 @@ namespace MusicXmlTwoOMN
             var stavesBuilder = new Dictionary<HorizontalContent, StringBuilder>();
             foreach (var horizontalContent in _reader.VerticalContent.Staves)
             {
-                stavesBuilder.Add(horizontalContent, new StringBuilder("'("));
+                stavesBuilder.Add(horizontalContent, new StringBuilder("'"));
             }
 
             return stavesBuilder;
