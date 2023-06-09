@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestData\MusicXmlTestCases\ChromaticScaleWithFlatsAndSharpsAccidentals.musicxml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\MusicXmlTestCases\OneBarOneNoteAndOneTimeSignature.musicxml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

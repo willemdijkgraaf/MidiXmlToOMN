@@ -26,7 +26,7 @@ namespace MusicXmlTwoOMN
         public int CurrentMeasureIndex { get; private set; }
         public int CurrentMeasureElementIndex { get; private set; }
         public bool HasMore { get; private set; }
-        public MeasureElement MeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
+        public MeasureElement CurrentMeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
         public void Next()
         {
             if (CycleStatus == MeasureInterpretationCycle.End) return;
