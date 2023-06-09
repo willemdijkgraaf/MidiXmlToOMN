@@ -1,10 +1,18 @@
-﻿using System.Text;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 namespace MusicXmlTwoOMN
 {
     public class OmnBuilder
     {
         private Reader _reader;
+        private static Dictionary<MeasureInterpretationCycle, Func<HorizontalContent, string>> _toOmn = new Dictionary<MeasureInterpretationCycle, Func<HorizontalContent, string>>()
+        {
+            { MeasureInterpretationCycle.StartBarLine, x => StartBarLineToOmn(x) },
+            { MeasureInterpretationCycle.EndBarLine, x => EndBarLineToOmn(x) },
+            { MeasureInterpretationCycle.Length, x => LengthToOmn(x) },
+            { MeasureInterpretationCycle.Pitch, x => PitchToOmn(x) },
+        };
 
         public OmnBuilder(Reader reader)
         {
@@ -40,26 +48,30 @@ namespace MusicXmlTwoOMN
             }
         }
 
+        private static string StartBarLineToOmn(HorizontalContent horizontalContent)
+        {
+            return "(";
+        }
+
+        private static string EndBarLineToOmn(HorizontalContent horizontalContent)
+        {
+            return ")";
+        }
+
+        private static string LengthToOmn(HorizontalContent horizontalContent)
+        {
+            return horizontalContent.CurrentMeasureElement.ToOmnLength();
+        }
+
+        private static string PitchToOmn(HorizontalContent horizontalContent)
+        {
+            return horizontalContent.CurrentMeasureElement.ToOmnPitch();
+        }
+
         private void StaffCurrentPositionToOmn(Dictionary<HorizontalContent, StringBuilder> stavesBuilder, HorizontalContent staff)
         {
             var staffBuilder = stavesBuilder[staff];
-            var omn = "";
-            switch (staff.CycleStatus)
-            {
-                case MeasureInterpretationCycle.StartBarLine:
-                    omn = "(";
-                    break;
-                case MeasureInterpretationCycle.EndBarLine:
-                    omn = ")";
-                    break;
-                case MeasureInterpretationCycle.Length:
-                    omn = staff.CurrentMeasureElement.ToOmnLength();
-                    break;
-                case MeasureInterpretationCycle.Pitch:
-                    omn = staff.CurrentMeasureElement.ToOmnPitch();
-                    break;
-
-            }
+            var omn = _toOmn[staff.CycleStatus].Invoke(staff);
             staffBuilder.Append(omn);
         }
 
