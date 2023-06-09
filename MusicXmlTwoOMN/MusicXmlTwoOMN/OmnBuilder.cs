@@ -15,7 +15,14 @@ namespace MusicXmlTwoOMN
         public List<string> BuildStaves()
         {
             var stavesBuilder = InitializeStavesBuilder();
+            BuildStaves(stavesBuilder);
+            FinishStavesBuilder(stavesBuilder);
 
+            return stavesBuilder.Select(x => x.Value.ToString()).ToList();
+        }
+
+        private void BuildStaves(Dictionary<HorizontalContent, StringBuilder> stavesBuilder)
+        {
             while (_reader.Next())
             {
                 foreach (var staff in _reader.VerticalContent.Staves)
@@ -23,10 +30,6 @@ namespace MusicXmlTwoOMN
                     StaffCurrentPositionToOmn(stavesBuilder, staff);
                 }
             }
-
-            FinishStavesBuilder(stavesBuilder);
-
-            return stavesBuilder.Select(x => x.Value.ToString()).ToList();
         }
 
         private void FinishStavesBuilder(Dictionary<HorizontalContent, StringBuilder> stavesBuilder)
