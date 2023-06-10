@@ -24,7 +24,7 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
-            staffs[0].Should().Be("'(w c4)");
+            staffs[0].Should().Be("'((w c4))");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
-            staffs[0].Should().Be("'(w c4)(w d4)");
+            staffs[0].Should().Be("'((w c4)(w d4))");
         }
 
         [TestMethod]

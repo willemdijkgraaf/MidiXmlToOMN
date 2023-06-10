@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using System.Text;
+﻿using System.Text;
 
 namespace MusicXmlTwoOMN
 {
@@ -44,7 +43,7 @@ namespace MusicXmlTwoOMN
         {
             foreach (var staff in  stavesBuilder)
             {
-                // staff.Value.Append(")");
+                staff.Value.Append(")");
             }
         }
 
@@ -89,7 +88,7 @@ namespace MusicXmlTwoOMN
             var stavesBuilder = new Dictionary<HorizontalContent, StringBuilder>();
             foreach (var horizontalContent in _reader.VerticalContent.Staves)
             {
-                stavesBuilder.Add(horizontalContent, new StringBuilder("'"));
+                stavesBuilder.Add(horizontalContent, new StringBuilder("'("));
             }
 
             return stavesBuilder;
