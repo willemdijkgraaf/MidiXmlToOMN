@@ -4,8 +4,8 @@ namespace MusicXmlTwoOMN
 {
     public class OmnBuilder
     {
-        private Reader _reader;
-        private static Dictionary<MeasureInterpretationCycle, Func<HorizontalContent, string>> _toOmn = new Dictionary<MeasureInterpretationCycle, Func<HorizontalContent, string>>()
+        private readonly Reader _reader;
+        private static readonly Dictionary<MeasureInterpretationCycle, Func<HorizontalContent, string>> _toOmn = new()
         {
             { MeasureInterpretationCycle.StartBarLine, x => StartBarLineToOmn(x) },
             { MeasureInterpretationCycle.EndBarLine, x => EndBarLineToOmn(x) },
@@ -39,23 +39,17 @@ namespace MusicXmlTwoOMN
             }
         }
 
-        private void FinishStavesBuilder(Dictionary<HorizontalContent, StringBuilder> stavesBuilder)
+        private static void FinishStavesBuilder(Dictionary<HorizontalContent, StringBuilder> stavesBuilder)
         {
             foreach (var staff in  stavesBuilder)
             {
-                staff.Value.Append(")");
+                staff.Value.Append(')');
             }
         }
 
-        private static string StartBarLineToOmn(HorizontalContent horizontalContent)
-        {
-            return "(";
-        }
+        private static string StartBarLineToOmn(HorizontalContent horizontalContent) => "(";
 
-        private static string EndBarLineToOmn(HorizontalContent horizontalContent)
-        {
-            return ")";
-        }
+        private static string EndBarLineToOmn(HorizontalContent horizontalContent) => ")";
 
         private static string LengthToOmn(HorizontalContent horizontalContent)
         {
@@ -67,7 +61,7 @@ namespace MusicXmlTwoOMN
             return horizontalContent.CurrentMeasureElement.ToOmnPitch();
         }
 
-        private void StaffCurrentPositionToOmn(Dictionary<HorizontalContent, StringBuilder> stavesBuilder, HorizontalContent staff)
+        private static void StaffCurrentPositionToOmn(Dictionary<HorizontalContent, StringBuilder> stavesBuilder, HorizontalContent staff)
         {
             var staffBuilder = stavesBuilder[staff];
             switch (staff.CycleStatus)
