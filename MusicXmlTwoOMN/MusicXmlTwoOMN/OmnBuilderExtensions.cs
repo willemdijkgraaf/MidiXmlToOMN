@@ -26,7 +26,8 @@ namespace MusicXmlTwoOMN
             switch (measureElement.Type)
             {
                 case MeasureElementType.Note:var note = measureElement.Element as Note;
-                    omn = _durations[note.Duration];
+                    var restAsOnm = note.IsRest ? "-":"";
+                    omn = $"{restAsOnm}{_durations[note.Duration]}";
                     break;
             }
             return omn;
@@ -39,7 +40,7 @@ namespace MusicXmlTwoOMN
             {
                 case MeasureElementType.Note:
                     var note = measureElement.Element as Note;
-                    if (note.Pitch != null) 
+                    if (note != null && !note.IsRest) 
                     {
                         omn = $"{note.Pitch.Step}{note.Pitch.ToOmnAccidental()}{note.Pitch.Octave} ".ToLower();
                     }
