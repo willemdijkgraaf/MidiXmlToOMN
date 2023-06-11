@@ -83,6 +83,22 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
+            staffs[0].Should().Be("'((q. c4 -e -h ))");
+        }
+
+        [TestMethod]
+        public void ShallBuildOmn_DottedQuarterNotesFromNoDotsToFourDots()
+        {
+            // arrange
+            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\DottedQuarterNotesFromNoDotsToFourDots.musicxml";
+            var reader = new Reader(path);
+            reader.Read();
+            var omnBuilder = new OmnBuilder(reader);
+
+            // act
+            var staffs = omnBuilder.BuildStaves();
+
+            // assert
             staffs[0].Should().Be("");
         }
     }
