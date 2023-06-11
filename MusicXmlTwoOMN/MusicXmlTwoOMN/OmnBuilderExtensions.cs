@@ -19,14 +19,14 @@ namespace MusicXmlTwoOMN
 
             var _lengths = new Dictionary<int, string>()
             {
-                { 1, "w "},
-                { 2, "h "},
-                { 4, "q "},
-                { 8, "e "},
-                { 16,"s "},
-                { 32,"t "},
-                { 64,"x "},
-                { 128,"u "}
+                { 1, "w"},
+                { 2, "h"},
+                { 4, "q"},
+                { 8, "e"},
+                { 16,"s"},
+                { 32,"t"},
+                { 64,"x"},
+                { 128,"u"}
             };
 
             var omn = "";
@@ -35,8 +35,19 @@ namespace MusicXmlTwoOMN
                 case MeasureElementType.Note:var note = measureElement.Element as Note;
                     var restAsOnm = note.IsRest ? "-":"";
                     var duration = note.Duration;
+                    var dots = "";
+                    if (duration%2 != 0) // uneven => has dots
+                    {
+                        switch (duration)
+                        {
+                            case 3:
+                                duration = 2;
+                                dots = ".";
+                                break;
+                        }
+                    }
                     var length = measureLength / duration;
-                    omn = $"{restAsOnm}{_lengths[length]}";
+                    omn = $"{restAsOnm}{_lengths[length]}{dots} ";
                     break;
             }
             return omn;

@@ -69,5 +69,21 @@ namespace MusicXmlTwoOmnTests
             // assert
             staffs[0].Should().Be("'((x c4 -x -t -s -e -q -h )(t c4 -t -s -e -q -h )(s c4 -s -e -q -h )(e c4 -e -q -h )(q c4 -q -h )(h c4 -h )(w c4 ))");
         }
+
+        [TestMethod]
+        public void ShallBuildOmn_OneQuarterDottedNoteAndOneBarAndOneTimeSignature()
+        {
+            // arrange
+            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneQuarterDottedNoteAndOneBarAndOneTimeSignature.musicxml";
+            var reader = new Reader(path);
+            reader.Read();
+            var omnBuilder = new OmnBuilder(reader);
+
+            // act
+            var staffs = omnBuilder.BuildStaves();
+
+            // assert
+            staffs[0].Should().Be("");
+        }
     }
 }
