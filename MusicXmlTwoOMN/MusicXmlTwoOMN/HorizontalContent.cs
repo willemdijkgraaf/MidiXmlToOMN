@@ -27,10 +27,19 @@ namespace MusicXmlTwoOMN
         public int CurrentMeasureElementIndex { get; private set; }
         public bool HasMore { get; private set; }
         public MeasureElement CurrentMeasureElement => _measures[CurrentMeasureIndex].MeasureElements[CurrentMeasureElementIndex];
+
+        public int Divisions { get; private set; }
+        public int Beats { get; private set; }
+
         public void Next()
         {
             if (CycleStatus == MeasureInterpretationCycle.End) return;
             SetIndexes();
+            if (CycleStatus == MeasureInterpretationCycle.StartBarLine && CurrentMeasure.Attributes != null)
+            {
+                Divisions = CurrentMeasure.Attributes.Divisions;
+                Beats = CurrentMeasure.Attributes.Time.Beats;
+            }
         }
 
         private void SetIndexes()

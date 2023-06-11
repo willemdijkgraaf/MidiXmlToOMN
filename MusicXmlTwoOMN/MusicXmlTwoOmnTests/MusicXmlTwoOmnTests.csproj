@@ -32,6 +32,9 @@
     <None Update="TestData\MusicXmlTestCases\OneBarOneNoteAndOneTimeSignature.musicxml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\MusicXmlTestCases\OneNoteLengthPerBarOneTimeSignature.musicxml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\MusicXmlWithChords.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

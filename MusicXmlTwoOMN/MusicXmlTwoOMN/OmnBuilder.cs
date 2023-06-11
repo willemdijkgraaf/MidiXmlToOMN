@@ -53,7 +53,7 @@ namespace MusicXmlTwoOMN
 
         private static string LengthToOmn(HorizontalContent horizontalContent)
         {
-            return horizontalContent.CurrentMeasureElement.ToOmnLength();
+            return horizontalContent.CurrentMeasureElement.ToOmnLength(horizontalContent.Divisions, horizontalContent.Beats);
         }
 
         private static string PitchToOmn(HorizontalContent horizontalContent)
