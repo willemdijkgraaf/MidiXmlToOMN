@@ -24,7 +24,7 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
-            staffs[0].Should().Be("'((w c4))");
+            staffs[0].Should().Be("'((w c4 ))");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
-            staffs[0].Should().Be("'((w c4)(w d4))");
+            staffs[0].Should().Be("'((w c4 )(w d4 ))");
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace MusicXmlTwoOmnTests
             var staffs = omnBuilder.BuildStaves();
 
             // assert
-            staffs[0].Should().Be("'(w c4)(w c4)");
+            staffs[0].Should().Be("'((q cb4 q c4 q cs4 q db4 )(q d4 q ds4 q eb4 q e4 )(q es4 q fb4 q f4 q fs4 )(q gb4 q g4 q gs4 q ab4 )(q a4 q as4 q bb4 q b4 )(q bs4 q h ))");
         }
     }
 }

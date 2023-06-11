@@ -41,7 +41,7 @@ namespace MusicXmlTwoOMN
                     var note = measureElement.Element as Note;
                     if (note.Pitch != null) 
                     {
-                        omn = $"{note.Pitch.Step}{note.Pitch.ToOmnAccidental()}{note.Pitch.Octave}".ToLower();
+                        omn = $"{note.Pitch.Step}{note.Pitch.ToOmnAccidental()}{note.Pitch.Octave} ".ToLower();
                     }
                     break;
             }

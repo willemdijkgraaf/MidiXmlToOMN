@@ -80,7 +80,6 @@ namespace MusicXmlTwoOmnTests
                 MeasureInterpretationCycle.Attribute,
                 MeasureInterpretationCycle.EndBarLine,
                 // second bar
-                MeasureInterpretationCycle.NotInitialized, // todo: shall be removed from output but doesn't harm for now.
                 MeasureInterpretationCycle.StartBarLine,
                 MeasureInterpretationCycle.TimeSignature,
                 MeasureInterpretationCycle.Length,
@@ -88,6 +87,55 @@ namespace MusicXmlTwoOmnTests
                 MeasureInterpretationCycle.Velocity,
                 MeasureInterpretationCycle.Attribute,
                 MeasureInterpretationCycle.EndBarLine
+            });
+        }
+
+        [TestMethod]
+        public void ShallRead_OneBarFourNotesAndOneTimeSignature()
+        {
+            // arrange
+            var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneBarFourNotesAndOneTimeSignature.musicxml";
+            var reader = new Reader(path);
+
+            // act
+            reader.Read();
+
+            var stave = reader.VerticalContent.Staves[0];
+            var cycle = new List<MeasureInterpretationCycle>();
+            while (reader.Next())
+            {
+                cycle.Add(stave.CycleStatus);
+            }
+
+            // assert
+            cycle.Should().BeEquivalentTo(new List<MeasureInterpretationCycle>
+            {
+                // first bar
+                MeasureInterpretationCycle.StartBarLine,
+                MeasureInterpretationCycle.TimeSignature,
+                // first note
+                MeasureInterpretationCycle.Length,
+                MeasureInterpretationCycle.Pitch,
+                MeasureInterpretationCycle.Velocity,
+                MeasureInterpretationCycle.Attribute,
+                // second note
+                MeasureInterpretationCycle.Length,
+                MeasureInterpretationCycle.Pitch,
+                MeasureInterpretationCycle.Velocity,
+                MeasureInterpretationCycle.Attribute,
+                // third note
+                MeasureInterpretationCycle.Length,
+                MeasureInterpretationCycle.Pitch,
+                MeasureInterpretationCycle.Velocity,
+                MeasureInterpretationCycle.Attribute,
+                // fourth note
+                MeasureInterpretationCycle.Length,
+                MeasureInterpretationCycle.Pitch,
+                MeasureInterpretationCycle.Velocity,
+                MeasureInterpretationCycle.Attribute,
+
+                MeasureInterpretationCycle.EndBarLine,
+                
             });
 
         }

@@ -30,50 +30,62 @@ namespace MusicXmlTwoOMN
         public void Next()
         {
             if (CycleStatus == MeasureInterpretationCycle.End) return;
-            
-            if (CycleStatus == MeasureInterpretationCycle.EndBarLine)
-            {
-                CycleStatus = MeasureInterpretationCycle.NotInitialized;
-            } else
-            {
-                CycleStatus++;
-            }
-
             SetIndexes();
         }
 
         private void SetIndexes()
         {
+            
+            HasMore = true;
+            
             switch (CycleStatus)
             {
+                case MeasureInterpretationCycle.NotInitialized:
                 case MeasureInterpretationCycle.StartBarLine:
                 case MeasureInterpretationCycle.TimeSignature:
                 case MeasureInterpretationCycle.Length:
                 case MeasureInterpretationCycle.Pitch:
                 case MeasureInterpretationCycle.Velocity:
-                case MeasureInterpretationCycle.Attribute:
-                case MeasureInterpretationCycle.EndBarLine:
-                    HasMore = true;
+                //case MeasureInterpretationCycle.Attribute:
+                //case MeasureInterpretationCycle.EndBarLine:
+                    CycleStatus++;
                     return;
             }
 
-            if (CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].MeasureElements.Count - 1)
+            if (CycleStatus == MeasureInterpretationCycle.Attribute && !MeasureHasMoreElements())
             {
-                // Next measure element
-                CurrentMeasureElementIndex++;
-            }
-            else
-            {
-                // next measure
-                CurrentMeasureIndex++;
-                CurrentMeasureElementIndex = 0;
+                CycleStatus = MeasureInterpretationCycle.EndBarLine;
+                return;
             }
 
-            if (CurrentMeasureIndex > _measures.Count - 1)
+            if (!StaffHasMoreElements() && CycleStatus == MeasureInterpretationCycle.EndBarLine)
             {
-                CycleStatus = MeasureInterpretationCycle.End;
                 HasMore = false;
+                CycleStatus = MeasureInterpretationCycle.End;
+                return;
             }
+
+            if (MeasureHasMoreElements())
+            {
+                CurrentMeasureElementIndex++;
+                CycleStatus = MeasureInterpretationCycle.Length;
+                return;
+            }
+
+            // next measure
+            CurrentMeasureIndex++;
+            CurrentMeasureElementIndex = 0;
+            CycleStatus = MeasureInterpretationCycle.StartBarLine;
+        }
+
+        private bool StaffHasMoreElements()
+        {
+            return CurrentMeasureIndex < _measures.Count - 1;
+        }
+
+        private bool MeasureHasMoreElements()
+        {
+            return CurrentMeasureElementIndex < _measures[CurrentMeasureIndex].MeasureElements.Count - 1;
         }
     }
 }
