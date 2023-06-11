@@ -12,7 +12,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneBarOneNoteAndOneTimeSignature.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
@@ -28,7 +27,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\TwoBarsTwoNotesAndOneTimeSignature.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
@@ -44,7 +42,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\ChromaticScaleWithFlatsAndSharpsAccidentals.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
@@ -60,7 +57,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneNoteLengthPerBarOneTimeSignature.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
@@ -76,7 +72,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\OneQuarterDottedNoteAndOneBarAndOneTimeSignature.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
@@ -92,7 +87,6 @@ namespace MusicXmlTwoOmnTests
             // arrange
             var path = "C:\\repos\\MidiXmlToOMN\\MusicXmlTwoOMN\\MusicXmlTwoOmnTests\\TestData\\MusicXmlTestCases\\DottedQuarterNotesFromNoDotsToFourDots.musicxml";
             var reader = new Reader(path);
-            reader.Read();
             var omnBuilder = new OmnBuilder(reader);
 
             // act
