@@ -15,39 +15,36 @@ namespace MusicXmlTwoOMN
 
         public static string ToOmnLength (this MeasureElement measureElement, int divisions, int beats)
         {
-            var measureLength = divisions * beats;
-
-            var _lengths = new Dictionary<int, string>()
+            var _lengths = new Dictionary<string, string>()
             {
-                { 1, "w"},
-                { 2, "h"},
-                { 4, "q"},
-                { 8, "e"},
-                { 16,"s"},
-                { 32,"t"},
-                { 64,"x"},
-                { 128,"u"}
+                { "whole", "w"},
+                { "half", "h"},
+                { "quarter", "q"},
+                { "eighth", "e"},
+                { "16th","s"},
+                { "32nd","t"},
+                { "64th","x"},
+                { "128th","u"}
             };
 
             var omn = "";
             switch (measureElement.Type)
             {
-                case MeasureElementType.Note:var note = measureElement.Element as Note;
+                case MeasureElementType.Note:
+                    if (measureElement.Element is not Note note) break;
                     var restAsOnm = note.IsRest ? "-":"";
                     var duration = note.Duration;
                     var dots = "";
-                    if (duration%2 != 0) // uneven => has dots
+                    var remainingDuration = duration;
+                    var remainingDivision = divisions;
+                    while (remainingDuration > 1 && remainingDuration % remainingDivision != 0)
                     {
-                        switch (duration)
-                        {
-                            case 3:
-                                duration = 2;
-                                dots = ".";
-                                break;
-                        }
+                        remainingDuration = remainingDuration % divisions;
+                        remainingDivision = remainingDivision / 2;
+                        dots = $"{dots}.";
                     }
-                    var length = measureLength / duration;
-                    omn = $"{restAsOnm}{_lengths[length]}{dots} ";
+                    
+                    omn = $"{restAsOnm}{_lengths[note.Type]}{dots} ";
                     break;
             }
             return omn;
